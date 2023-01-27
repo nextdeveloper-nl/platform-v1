@@ -34,3 +34,9 @@ application is as easy as adding the package name to the composer;
     ...
     }
 ```
+
+## Components
+
+- PHP8.2
+- Laravel
+- Laravel Octane
