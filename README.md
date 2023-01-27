@@ -40,3 +40,10 @@ application is as easy as adding the package name to the composer;
 - PHP8.2
 - Laravel
 - Laravel Octane
+
+## Running the project
+
+Is as simle as:
+```
+php artisan octane:start
+```
