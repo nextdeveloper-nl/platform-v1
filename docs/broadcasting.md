@@ -8,15 +8,33 @@ The key of redis will be "bcast:{client}{account_id}". Which can be converted to
 - bcast:api123456
 - bcast:app123456
 
+## Requesting the broadcasts
+
+
 ## Lifespan of broadcasts
 All broadcast messages are stored in redis with EXPIRE directive. Which will be 10 mins. After that the broadcast message
 will be deleted automatically.
 
 Also we add timestamp as afield in ZADD command so that the client can use the most relevant broadcast message they want.
 
+**BURAYA EKLENECEK**
+
+Burada login olan her client için bir clientkey yaratılacak. Daha sonra bu clientKey'in karşısına account_id yazılacak.
+Böylelikle doğrudan openresty üzerinden ilgili clientkey'e ait account'u bulup ardından o account'un broadcast mesajlarına
+erişim sağlanacak. Böylelikle müşteri sadece ilgili key e erişebilecek.
+
+Burada güvenlik amaçlı her request'te takip edilmesi gereken clientkey'i değiştirebiliriz. Böylelikle man in the middle 
+saldırısının da önüne geçmiş oluruz.
+```
+//Burada 1 saat sonra expire olacak bir anahtar yaratıyoruz;
+SET key{key} {account_id} EX 3600
+```
+**BURAYA EKLENECEK**:
+
 So it will be something like;
 ```
 Sample:
+
 ZADD bcast:wp1 {timestamp} {data}
 EXPIREAT bcast:wp1 {timestamp}  //  We are using this because we only want to store X minutes of data.
 
