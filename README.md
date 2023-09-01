@@ -146,8 +146,11 @@ The 'repositories' section is added to the projects 'composer.json' file as foll
 ```
 
 **Note That** type: Specifies the repository type and should point to a local directory when 'path' is used.
+
 **Note That** url: Specifies the path to the local direstory. This path should be specified relative to the folder where the projects 'composer.json' file is located.
+
 **Note That** options: It is used to specify extra options. When the 'symlink' options is set to true composer adds the dependency as a symbolic link 
+
 **Note That** This method is quite useful for testing packages or dependencies tahtyou develop locally during the development of your project. This way, you can quickly include changes from the local directory into your project.
 
 The following command is used for changes in the 'composer.json' file:
