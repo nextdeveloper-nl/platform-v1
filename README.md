@@ -59,7 +59,7 @@ Edit the `composer.json` file according to your needs and add the projects depen
 
 ```
 "repositories": [
-            
+          ...
             {
                 "type": "path",
                 "url": "../NextDeveloper/...",
@@ -67,10 +67,13 @@ Edit the `composer.json` file according to your needs and add the projects depen
                 {
                     "symlink": true
                 }
-            }
+            }\
             ...
         ]
-    "require": { ... },
+    "require": 
+        { 
+        ... 
+        },
 ```
 
 In this example\ a local dependency is defined in the `repositories` section, and external dependencies to be fetched from outside sources are specified in the `require` section.
