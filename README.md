@@ -41,90 +41,126 @@ application is as easy as adding the package name to the composer;
 - Laravel
 - Laravel Octane
 
-## Project Setup
 
+## Project Setup
 This covers cloning your Laravel project from GitHub, installing necessary dependencies, creating configuration files and running the project.
 
-### Step 1 : Cloning the project from GitHub Account
+ ### Step 1 : Cloning the project from GitHub account
 
-To clone the relevant project from your GitHub account, you use the following command:
+  First, clone the Laravel project from GitHub and clone it into your project directory.
+  Open the terminal:
 
-```
-git clone https://github.com/nextdeveloper-nl/platform-v1.git
-```
-### Step 2 : Creating the 'composer.json' file and installing dependencies
+  ```
+    git clone https://github.com/nextdeveloper-nl/platform-v1.git
+    cd <project_directory>
+  ```
+### Step 2 : Install composer dependencies
 
-Edit the `composer.json` file according to your needs and add the projects dependencies.
-
-
-```
-"repositories": [
-          ...
-            {
-                "type": "path",
-                "url": "../NextDeveloper/...",
-                "options": 
-                {
-                    "symlink": true
-                }
-            }\
-            ...
-        ]
-    "require": 
-        { 
-        ... 
-        },
-```
-
-In this example\ a local dependency is defined in the `repositories` section, and external dependencies to be fetched from outside sources are specified in the `require` section.
-
-To create a folder named `NextDeveloper` use the following command:
+Let's use the following command to create the 'composer.json' file in the project.
+Open the terminal and navigate to the project directory
 
 ```
-mkdir NextDeveloper
-cd NextDeveloper
-```
-The cloning process from GitHub is performed for the required repositories
-
-```
-git clone https://github.com/nextdeveloper-nl/generator.git
-git clone https://github.com/nextdeveloper-nl/commons.git
-git clone https://github.com/nextdeveloper-nl/i18n.git
-git clone -b dev https://github.com/nextdeveloper-nl/iam.git
-cd ..
-cd <project_name>
-```
-After completing the composer.json file.
-
-```
-composer install
-```
-The update the dependencies
-
-```
-composer update
+  composer init
 ```
 
-### Step 3: Creating the '.env' file and generating an APP_KEY
+With this command, a 'composer.json' file is created and you will be prompted with various questions.
 
-Create a .env file in the projects root directory :
+ 1. Package name(<vendor>/<name>) : This is a step where you need to specify a unique name for the package you are creating. '<vendor>' -> It represents the person and organization creating the package.  '<name>' -> It represent the name of the created package.
+ 2. Description : Package description
+ 3. Author : It represents the information of the person creating the package
+ 4. Minimum Stability: Indicantes the stability level of the project. (stable,dev,alpha)
+ 5. Package Type : Package Type(project,library,laravel-package)
+ 6. License : Package licence (MIT,GPL,BSD)
+ 7. Would you like to define your dependencies(require) interactively?(yes/no): This question asks whether you want to define dependencies for the project. If you choose 'yes' you can define dependencies interactively. If you choose 'no' you ca add dependencies later by editing the 'composer.json' file
+ . Would you like to define your dev dependencies(require-dev) interactively?(yes/no): Development dependencies
+
+Then,
+```
+  composer install
+```
+This command installs the core dependencies of your Laravel project
 
 ```
-touch env
+  composer update
 ```
+This command updates the changes made in the 'composer.json' file.
+
+### Step 3 : Creating the '.env' file and generating the application key
+ 
+ The '.env' file contains the basic configurations setting for your Laravel project.
+ Open the terminal and navigate to the project directory
+
+```
+  touch .env
+```
+ This command creates the '.env' file.
 **Note that:** The .env file is used to store configuration settings. It stores sensitive information(database password,production, test)
 
-To generate an 'APP_KEY'
 ```
-php artisan key:generate  
+  php artisan key:generate
+```
+This command creates the APP_KEY.
+**Note that** This command automatically generates the key setting in the config/app.php file and adds it to the .env file.
+
+### Step 4 : Repository cloning and composer operations
+ 
+ To clone a repository and include it in the project the following steps are followed:
+ Navigate to the parent directory of the project in the terminal
+       ```
+            cd ..
+            mkdir NextDeveloper
+            cd NextDeveloper
+            git clone https://github.com/nextdeveloper-nl/generator.git
+            git clone https://github.com/nextdeveloper-nl/commons.git
+            git clone https://github.com/nextdeveloper-nl/i18n.git
+            git clone -b dev https://github.com/nextdeveloper-nl/iam.git
+            cd ..
+            cd <project_name>
+      ```
+  The repository versions used to in the 'require' section of the 'composer.json' file are automatically detected by composer
+     
+     ```
+        "require": {
+        ... 
+            "nextdeveloper/commons": "@dev",
+            "nextdeveloper/generator": "@dev",
+            "nextdeveloper/i18n": "@dev",
+        ...
+        }
+     ```
+
+ ### Step 5: Adding the repository section
+   
+The 'repositories' section is added to the projects 'composer.json' file as follows:
+
+```
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../NextDeveloper/your-package",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 ```
 
-**Note that** This command automatically generates the key setting in the config/app.php file and adds it to the .env file.
+**Note That** type: Specifies the repository type and should point to a local directory when 'path' is used.
+**Note That** url: Specifies the path to the local direstory. This path should be specified relative to the folder where the projects 'composer.json' file is located.
+**Note That** options: It is used to specify extra options. When the 'symlink' options is set to true composer adds the dependency as a symbolic link 
+**Note That** This method is quite useful for testing packages or dependencies tahtyou develop locally during the development of your project. This way, you can quickly include changes from the local directory into your project.
+
+The following command is used for changes in the 'composer.json' file:
+
+ ```
+   composer install
+   composer update
+ ```
 
 ### Running the project
 
 ```
-php artisan serve
+  php artisan serve
 ```
 
 ## Running the project
