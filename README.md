@@ -65,7 +65,7 @@ Open the terminal and navigate to the project directory
 
 With this command, a 'composer.json' file is created and you will be prompted with various questions.
 
- 1. Package name(<vendor>/<name>) : This is a step where you need to specify a unique name for the package you are creating. '<vendor>' -> It represents the person and organization creating the package.  '<name>' -> It represent the name of the created package.
+ 1. Package name(vendor/name) : This is a step where you need to specify a unique name for the package you are creating. 'vendor' -> It represents the person and organization creating the package.  'name' -> It represent the name of the created package.
  2. Description : Package description
  3. Author : It represents the information of the person creating the package
  4. Minimum Stability: Indicantes the stability level of the project. (stable,dev,alpha)
@@ -106,28 +106,28 @@ This command creates the APP_KEY.
  
  To clone a repository and include it in the project the following steps are followed:
  Navigate to the parent directory of the project in the terminal
-       ```
-            cd ..
-            mkdir NextDeveloper
-            cd NextDeveloper
-            git clone https://github.com/nextdeveloper-nl/generator.git
-            git clone https://github.com/nextdeveloper-nl/commons.git
-            git clone https://github.com/nextdeveloper-nl/i18n.git
-            git clone -b dev https://github.com/nextdeveloper-nl/iam.git
-            cd ..
-            cd <project_name>
-      ```
+  ```
+      cd ..
+      mkdir NextDeveloper
+      cd NextDeveloper
+      git clone https://github.com/nextdeveloper-nl/generator.git
+      git clone https://github.com/nextdeveloper-nl/commons.git
+      git clone https://github.com/nextdeveloper-nl/i18n.git
+      git clone -b dev https://github.com/nextdeveloper-nl/iam.git
+      cd ..
+      cd <project_name>
+  ```
   The repository versions used to in the 'require' section of the 'composer.json' file are automatically detected by composer
      
-     ```
-        "require": {
-        ... 
-            "nextdeveloper/commons": "@dev",
-            "nextdeveloper/generator": "@dev",
-            "nextdeveloper/i18n": "@dev",
-        ...
-        }
-     ```
+  ```
+    "require": {
+    ... 
+        "nextdeveloper/commons": "@dev",
+        "nextdeveloper/generator": "@dev",
+        "nextdeveloper/i18n": "@dev",
+    ...
+    }
+  ```
 
  ### Step 5: Adding the repository section
    
